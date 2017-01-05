@@ -1,0 +1,90 @@
+ { "category": {
+     "id": 4,
+     "name": "Carbohydrates"
+   },
+   "accumulated_scores": [
+     {
+       "score": 0,
+       "count": 1
+     },
+     {
+       "score": 8,
+       "count": 1
+     },
+     {
+       "score": 10,
+       "count": 1
+     },
+     {
+       "score": 11,
+       "count": 7
+     },
+     {
+       "score": 12,
+       "count": 7
+     },
+     {
+       "score": 13,
+       "count": 11
+     },
+     {
+       "score": 14,
+       "count": 22
+     },
+     {
+       "score": 15,
+       "count": 28
+     },
+     {
+       "score": 16,
+       "count": 35
+     },
+     {
+       "score": 17,
+       "count": 40
+     },
+     {
+       "score": 18,
+       "count": 27
+     },
+     {
+       "score": 19,
+       "count": 13
+     },
+     {
+       "score": 20,
+       "count": 11
+     },
+     {
+       "score": 21,
+       "count": 7
+     },
+     {
+       "score": 22,
+       "count": 2
+     },
+     {
+       "score": 23,
+       "count": 3
+     }
+   ],
+   "max_score": 30,
+   "bounds": [
+     {
+       "bound": 25,
+       "explanation": "Efficient  use of carbohydrate"
+     },
+     {
+       "bound": 50,
+       "explanation": "Moderate use of carbohydrate"
+     },
+     {
+       "bound": 75,
+       "explanation": "Inefficient use of carbohydrate"
+     },
+     {
+       "bound": 100,
+       "explanation": "Highly inefficient use of Carbohydrates "
+     }
+   ]
+ }
