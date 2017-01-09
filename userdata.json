@@ -1,0 +1,30 @@
+[
+    {
+        "results": [
+            {
+                "name": "Fat",
+                "id": 1,
+                "score": 10,
+                "max_score": 100,
+                "summary": "More awesome text",
+                "result": "High sensitivity"
+            },
+            {
+                "name": "Carbohydrates",
+                "id": 2,
+                "score": 20,
+                "max_score": 25,
+                "summary": "Awesome text",
+                "result": "High sensitivity"
+            },
+            {
+                "name": "Connective Tissue Injury",
+                "id": 2,
+                "score": 20,
+                "max_score": 22,
+                "summary": "Awesome text",
+                "result": "High sensitivity"
+            }
+        ]
+    }
+]

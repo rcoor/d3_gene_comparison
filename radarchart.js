@@ -38,7 +38,7 @@ var RadarChart = {
 
         cfg.maxValue = 100;
 
-        var allAxis = (d[0].map(function (i, j) { return i.area }));
+        var allAxis = (d[0].map(function (i, j) { return i.name }));
         var total = allAxis.length;
         var radius = cfg.factor * Math.min(cfg.w / 2, cfg.h / 2);
         var Format = d3.format('%');
@@ -122,8 +122,8 @@ var RadarChart = {
             g.selectAll(".nodes")
                 .data(y, function (j, i) {
                     dataValues.push([
-                        cfg.w / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
-                        cfg.h / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
+                        cfg.w / 2 * (1 - (parseFloat(Math.max(j.percentage, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
+                        cfg.h / 2 * (1 - (parseFloat(Math.max(j.percentage, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
                     ]);
                 });
             dataValues.push(dataValues[0]);
@@ -169,28 +169,29 @@ var RadarChart = {
                 .append("svg:circle")
                 .attr("class", "radar-chart-serie" + series)
                 .attr('r', cfg.radius)
-                .attr("alt", function (j) { return Math.max(j.value, 0) })
+                .attr("alt", function (j) { return Math.max(j.percentage, 0) })
                 .attr("cx", function (j, i) {
                     dataValues.push([
-                        cfg.w / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
-                        cfg.h / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
+                        cfg.w / 2 * (1 - (parseFloat(Math.max(j.percentage, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
+                        cfg.h / 2 * (1 - (parseFloat(Math.max(j.percentage, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
                     ]);
-                    return cfg.w / 2 * (1 - (Math.max(j.value, 0) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total));
+                    return cfg.w / 2 * (1 - (Math.max(j.percentage, 0) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total));
                 })
                 .attr("cy", function (j, i) {
-                    return cfg.h / 2 * (1 - (Math.max(j.value, 0) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total));
+                    return cfg.h / 2 * (1 - (Math.max(j.percentage, 0) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total));
                 })
                 .attr("data-id", function (j) { return j.area })
                 .style("fill", "#fff")
                 .style("stroke-width", "2px")
                 .style("stroke", cfg.color(series)).style("fill-opacity", .9)
+                .on('click', function (d) { console.log(d) })
                 .on('mouseover', function (d) {
-                    console.log(d.area)
+                    console.log(d.name)
                     tooltip
                         .style("left", d3.event.pageX - 40 + "px")
                         .style("top", d3.event.pageY - 80 + "px")
                         .style("display", "inline-block")
-                        .html((d.area) + "<br><span>" + (d.value) + "</span>");
+                        .html((d.name) + "<br><span>" + (parseInt((d.percentage))) + "%" + "<br>" + d.result + "</span>");
                 })
                 .on("mouseout", function (d) { tooltip.style("display", "none"); });
 
@@ -199,6 +200,7 @@ var RadarChart = {
     }
 };
 
+// Dimensions of radar chart
 var width = 300,
     height = 300;
 
@@ -211,18 +213,79 @@ var config = {
     ExtraWidthX: 300
 }
 
-//Call function to draw the Radar chart
-d3.json("data.json", function (error, data) {
-    if (error) throw error;
-    console.log(data);
+getAccumulatedData((accData) => {
+    getUserData((userData) => {
+
+        var categories = []
+        userData[0].forEach(category => {
+            categories.push(category.name);
+        });
+
+        accData = accData.filter(category => {
+            var bool = false;
+            categories.forEach(name => {
+                if (category.name == name)
+                    bool = true;
+            });
+            return bool;
+        });
 
 
-    data = data.map(category => {
-        category = countScores(category);
-        return category;
+        userData.push(accData);
+        data = userData;
+
+
+        RadarChart.draw("#chart", data, config);
     });
-    RadarChart.draw("#chart", data, config);
 });
+
+
+
+// fetch data
+function getAccumulatedData(callback) {
+    // Call function to draw the Radar chart
+    d3.json("data.json", function (error, data) {
+        if (error) throw error;
+        console.log(data);
+
+
+        data = data.map(category => {
+            category = countScores(category);
+            result = getResultsFromBounds(category.percentage, category.bounds);
+            console.log(result);
+            return {
+                "name": category.category.name,
+                "id": category.category.id,
+                "score": category.score,
+                "max_score": category.max_score,
+                "percentage": category.percentage,
+                "result": result
+            }
+        });
+        console.log(data);
+
+        callback(data);
+    });
+}
+
+
+// fetch data on users
+function getUserData(callback) {
+    d3.json("userdata.json", function (error, data) {
+        if (error) throw error;
+        data = data.map(user => {
+            user = user.results.map((category) => {
+                console.log(category);
+                category['percentage'] = (category.score / category.max_score * 100);
+                return category;
+            });
+            return user;
+        });
+        console.log(data)
+        callback(data);
+    });
+}
+
 
 /** Make average of scores for each category */
 function countScores(category) {
@@ -233,9 +296,28 @@ function countScores(category) {
         peopleCount += scores.count;
     });
     var percentage = (storeScores / peopleCount) / category.max_score * 100;
-    category['avg_percentage'] = percentage;
+    category['percentage'] = percentage;
     return category;
 }
+
+// get result from bounds
+function getResultsFromBounds(percentage, bounds) {
+    console.log(bounds);
+    var bool = false;
+    for (var i = 0; i < bounds.length; i++) {
+        if (i == 0) {
+            bool = percentage < bounds[i].bound && percentage > 0;
+            console.log(bool);
+        } else {
+            console.log(bool);
+            bool = percentage < bounds[i].bound && percentage > bounds[i - 1].bound;
+        }
+        if (bool) {
+            return bounds[i].explanation;
+        }
+    }
+}
+
 
 var svg = d3.select('body')
     .selectAll('svg')
