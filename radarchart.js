@@ -38,7 +38,7 @@ var RadarChart = {
 
         cfg.maxValue = 100;
 
-        var allAxis = (d[0].map(function (i, j) { return i.name }));
+        var allAxis = (d[0].map(function (i, j) { return i }));
         var total = allAxis.length;
         var radius = cfg.factor * Math.min(cfg.w / 2, cfg.h / 2);
         var Format = d3.format('%');
@@ -107,7 +107,11 @@ var RadarChart = {
 
         axis.append("text")
             .attr("class", "legend")
-            .text(function (d) { return d })
+            .text(function (d) { return d.name })
+            .on("click", function(d) {
+                var text = d;
+                document.getElementById('summary').innerHTML = d.result.summary.body;
+            })
             .style("font-family", "sans-serif")
             .style("font-size", "11px")
             .attr("text-anchor", "middle")
