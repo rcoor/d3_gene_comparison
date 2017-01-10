@@ -38,7 +38,7 @@ var RadarChart = {
 
         cfg.maxValue = 100;
 
-        var allAxis = (d[0].map(function (i, j) { return i.name }));
+        var allAxis = (d[0].map(function (i, j) { return i }));
         var total = allAxis.length;
         var radius = cfg.factor * Math.min(cfg.w / 2, cfg.h / 2);
         var Format = d3.format('%');
@@ -113,6 +113,12 @@ var RadarChart = {
 
 
         axis.style("font-family", "sans-serif")
+            .text(function (d) { return d.name })
+            .on("click", function (d) {
+                var text = d;
+                document.getElementById('summary').innerHTML = d.result.summary.body;
+            })
+            .style("font-family", "sans-serif")
             .style("font-size", "11px")
             .attr("text-anchor", "middle")
             .attr("dy", "1.5em")
@@ -189,9 +195,9 @@ var RadarChart = {
                 .style("fill", cfg.color(series))
                 .style("stroke-width", "2px")
                 .style("stroke", cfg.color(series)).style("fill-opacity", .9)
-                .on('click', function (d) { console.log(d) })
+                .on('click', function (d) { })
                 .on('mouseover', function (d) {
-                    console.log(d.name)
+
                     tooltip
                         .style("left", d3.event.pageX - 40 + "px")
                         .style("top", d3.event.pageY - 80 + "px")
@@ -218,33 +224,7 @@ var config = {
     ExtraWidthX: 300
 }
 
-getAccumulatedData((accData) => {
-    getUserData((userData) => {
-        var categories = []
-        userData[0].forEach(category => {
-            categories.push(category.name);
-        });
 
-        accData = accData.filter(category => {
-            var bool = false;
-            categories.forEach(name => {
-                if (category.name == name)
-                    bool = true;
-            });
-            return bool;
-        });
-        accData = accData.sort(compare);
-        //userData = userData.sort(compare);
-        userData.map(user => user.sort(compare));
-        console.log(userData);
-        console.log(accData);
-        userData.push(accData);
-        data = userData;
-
-
-        RadarChart.draw("#chart", data, config);
-    });
-});
 
 
 
@@ -253,21 +233,22 @@ function getAccumulatedData(callback) {
     // Call function to draw the Radar chart
     d3.json("data.json", function (error, data) {
         if (error) throw error;
-        console.log(data);
 
 
         data = data.map(category => {
             category = category.response;
             category = countScores(category);
             result = getResultsFromBounds(category.percentage, category.bounds);
-            console.log(result);
             return {
                 "name": category.category.name,
                 "id": category.category.id,
                 "score": category.score,
                 "max_score": category.max_score,
                 "percentage": category.percentage,
-                "result": result
+                "result": result,
+                "category_group": {
+                    "name": category.category.category_group.name
+                }
             };
         });
         callback(data);
@@ -279,17 +260,16 @@ function getAccumulatedData(callback) {
 function getUserData(callback) {
     d3.json("neymar.json", function (error, data) {
         if (error) throw error;
-        console.log(data);
-        data = data.map(user => {
-            console.log(user);
-            user = user.map((category) => {
-                console.log(category);
-                category['percentage'] = (category.user_score / category.max_score * 100);
-                return category;
-            });
-            return user;
+
+
+
+        data = data.map((category) => {
+
+            category['percentage'] = (category.user_score / category.max_score * 100);
+            return category;
         });
-        console.log(data)
+
+
         callback(data);
     });
 }
@@ -310,14 +290,14 @@ function countScores(category) {
 
 // get result from bounds
 function getResultsFromBounds(percentage, bounds) {
-    console.log(bounds);
+
     var bool = false;
     for (var i = 0; i < bounds.length; i++) {
         if (i == 0) {
             bool = percentage < bounds[i].bound && percentage > 0;
-            console.log(bool);
+
         } else {
-            console.log(bool);
+
             bool = percentage < bounds[i].bound && percentage > bounds[i - 1].bound;
         }
         if (bool) {
@@ -335,12 +315,19 @@ function compare(a, b) {
 }
 
 function wrap(text) {
-/*    var concattedString = '';
-    text.split(" ").forEach(x => {
-        concattedString += '<tspan dy="1.4em">' + x + '</tspan>';
-    });
-    return concattedString;*/
+    /*    var concattedString = '';
+        text.split(" ").forEach(x => {
+            concattedString += '<tspan dy="1.4em">' + x + '</tspan>';
+        });
+        return concattedString;*/
     return text
+}
+
+function filterByCategory(array, type) {
+    if (!type) return array;
+    return array.filter((value) => {
+        return value.category_group.name == type;
+    });
 }
 
 
@@ -349,3 +336,40 @@ var svg = d3.select('body')
     .append('svg')
     .attr("width", width)
     .attr("height", height);
+
+// Draw chart
+function drawChart(filterValue) {
+    d3.select("#chart").remove();
+
+    getAccumulatedData((accData) => {
+        getUserData((userData) => {
+            var categories = []
+            userData.forEach(category => {
+                categories.push(category.name);
+            });
+
+            accData = accData.filter(category => {
+                var bool = false;
+                categories.forEach(name => {
+                    if (category.name == name)
+                        bool = true;
+                });
+                return bool;
+            });
+
+            accData = filterByCategory(accData, filterValue);
+            userData = filterByCategory(userData, filterValue);
+            accData = accData.sort(compare);
+            userData = userData.sort(compare);
+
+            userData = [userData];
+            userData.push(accData);
+            data = userData;
+
+            RadarChart.draw("#chart", data, config);
+        });
+    });
+}
+
+drawChart("");
+drawChart("nutrition");

@@ -5389,6 +5389,124 @@
     "success": true,
     "response": {
         "category": {
+            "id": 14,
+            "name": "Sweat",
+            "introduction_id": 249,
+            "version": 2,
+            "demo": false,
+            "category_group": {
+                "name": "fitness"
+            },
+            "product": {
+                "id": 201,
+                "name": "Sweating",
+                "default_product": false,
+                "img_path": "https:\/\/cdnstorage.azurewebsites.net\/images\/categories\/sweat\/",
+                "version": 2,
+                "subscription_id": null,
+                "product_payment_type_id": 1,
+                "product_payment_type": {
+                    "id": 1,
+                    "name": "one_time"
+                },
+                "product_type": {
+                    "name": "category"
+                }
+            },
+            "confidence_score": {
+                "value": 3,
+                "symbol": "B",
+                "explanation": "This category or gene variant do not fufill all the criteria required to get the score A. For instance, there might be less studies conducted on the subject,  the participant numbers can be lower or there might only be covered one population group. This is still a strong score and the gene variants scored B are likely to have a significant effect."
+            },
+            "categories_genes": [
+                {
+                    "explanation": "This gene encodes for a protein MRP8 involved in the functioning of apocrine sweat glands. Certain variations of this gene result in increased sweat and body odour. ",
+                    "gene": {
+                        "id": 68,
+                        "name": "ABCC11"
+                    },
+                    "categories_gene_markers": [
+                        {
+                            "explanation": "",
+                            "gene_evaluations": [
+                                {
+                                    "explanation": "This variation is linked to a reduced level of sweating, and therefore a reduced body odour",
+                                    "genotype_effect": {
+                                        "name": "Good"
+                                    },
+                                    "genotype": {
+                                        "name": "TT"
+                                    },
+                                    "user_result": false
+                                },
+                                {
+                                    "explanation": "This variation is linked to a moderate level of sweating",
+                                    "genotype_effect": {
+                                        "name": "Medium Bad"
+                                    },
+                                    "genotype": {
+                                        "name": "CT"
+                                    },
+                                    "user_result": true
+                                },
+                                {
+                                    "explanation": "This variation is linked to a high level of sweating, and therefore a increased body odour",
+                                    "genotype_effect": {
+                                        "name": "Bad"
+                                    },
+                                    "genotype": {
+                                        "name": "CC"
+                                    },
+                                    "user_result": false
+                                }
+                            ],
+                            "confidence_score": {
+                                "value": 3,
+                                "symbol": "B",
+                                "explanation": "This category or gene variant do not fufill all the criteria required to get the score A. For instance, there might be less studies conducted on the subject,  the participant numbers can be lower or there might only be covered one population group. This is still a strong score and the gene variants scored B are likely to have a significant effect."
+                            },
+                            "gene_marker": {
+                                "rs_code": "rs17822931",
+                                "result_identifier": "exm1238680",
+                                "result_identifier_2": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "accumulated_scores": [
+            {
+                "score": 0,
+                "count": 6
+            },
+            {
+                "score": 2,
+                "count": 61
+            },
+            {
+                "score": 4,
+                "count": 150
+            }
+        ],
+        "max_score": 4,
+        "bounds": [
+            {
+                "bound": 33,
+                "explanation": "Low sweat level "
+            },
+            {
+                "bound": 100,
+                "explanation": "High sweat level"
+            }
+        ]
+    }
+}
+,
+{
+    "success": true,
+    "response": {
+        "category": {
             "id": 161,
             "name": "The Fat Gene",
             "introduction_id": 5141,
