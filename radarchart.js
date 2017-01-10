@@ -105,10 +105,14 @@ var RadarChart = {
             .style("stroke", "grey")
             .style("stroke-width", "1px");
 
-        axis.append("text")
+        axis = axis.append("g")
             .attr("class", "legend")
-            .text(function (d) { return d })
-            .style("font-family", "sans-serif")
+            .append("text")
+            .html(function (d) { return wrap(d); })
+
+
+
+        axis.style("font-family", "sans-serif")
             .style("font-size", "11px")
             .attr("text-anchor", "middle")
             .attr("dy", "1.5em")
@@ -126,6 +130,7 @@ var RadarChart = {
                         cfg.h / 2 * (1 - (parseFloat(Math.max(j.percentage, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
                     ]);
                 });
+
             dataValues.push(dataValues[0]);
             g.selectAll(".area")
                 .data([dataValues])
@@ -327,6 +332,15 @@ function compare(a, b) {
     if (a.name > b.name)
         return 1;
     return 0;
+}
+
+function wrap(text) {
+/*    var concattedString = '';
+    text.split(" ").forEach(x => {
+        concattedString += '<tspan dy="1.4em">' + x + '</tspan>';
+    });
+    return concattedString;*/
+    return text
 }
 
 
