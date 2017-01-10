@@ -11,7 +11,7 @@
 var RadarChart = {
     draw: function (id, d, options) {
         var cfg = {
-            radius: 5,
+            radius: 2,
             w: 600,
             h: 600,
             factor: 1,
@@ -25,7 +25,7 @@ var RadarChart = {
             TranslateY: 30,
             ExtraWidthX: 100,
             ExtraWidthY: 100,
-            color: d3.scaleOrdinal().range(["#6F257F", "#CA0D59"])
+            color: d3.scaleLinear().range(["#d1d1d1", "#000000"])
         };
 
         if ('undefined' !== typeof options) {
@@ -132,7 +132,7 @@ var RadarChart = {
                 .enter()
                 .append("polygon")
                 .attr("class", "radar-chart-serie" + series)
-                .style("stroke-width", "2px")
+                .style("stroke-width", "1.5px")
                 .style("stroke", cfg.color(series))
                 .attr("points", function (d) {
                     var str = "";
@@ -181,7 +181,7 @@ var RadarChart = {
                     return cfg.h / 2 * (1 - (Math.max(j.percentage, 0) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total));
                 })
                 .attr("data-id", function (j) { return j.area })
-                .style("fill", "#fff")
+                .style("fill", cfg.color(series))
                 .style("stroke-width", "2px")
                 .style("stroke", cfg.color(series)).style("fill-opacity", .9)
                 .on('click', function (d) { console.log(d) })
@@ -215,7 +215,6 @@ var config = {
 
 getAccumulatedData((accData) => {
     getUserData((userData) => {
-
         var categories = []
         userData[0].forEach(category => {
             categories.push(category.name);
@@ -229,8 +228,11 @@ getAccumulatedData((accData) => {
             });
             return bool;
         });
-
-
+        accData = accData.sort(compare);
+        //userData = userData.sort(compare);
+        userData.map(user => user.sort(compare));
+        console.log(userData);
+        console.log(accData);
         userData.push(accData);
         data = userData;
 
@@ -250,6 +252,7 @@ function getAccumulatedData(callback) {
 
 
         data = data.map(category => {
+            category = category.response;
             category = countScores(category);
             result = getResultsFromBounds(category.percentage, category.bounds);
             console.log(result);
@@ -260,10 +263,8 @@ function getAccumulatedData(callback) {
                 "max_score": category.max_score,
                 "percentage": category.percentage,
                 "result": result
-            }
+            };
         });
-        console.log(data);
-
         callback(data);
     });
 }
@@ -271,12 +272,14 @@ function getAccumulatedData(callback) {
 
 // fetch data on users
 function getUserData(callback) {
-    d3.json("userdata.json", function (error, data) {
+    d3.json("neymar.json", function (error, data) {
         if (error) throw error;
+        console.log(data);
         data = data.map(user => {
-            user = user.results.map((category) => {
+            console.log(user);
+            user = user.map((category) => {
                 console.log(category);
-                category['percentage'] = (category.score / category.max_score * 100);
+                category['percentage'] = (category.user_score / category.max_score * 100);
                 return category;
             });
             return user;
@@ -316,6 +319,14 @@ function getResultsFromBounds(percentage, bounds) {
             return bounds[i].explanation;
         }
     }
+}
+
+function compare(a, b) {
+    if (a.name < b.name)
+        return -1;
+    if (a.name > b.name)
+        return 1;
+    return 0;
 }
 
 

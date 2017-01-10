@@ -192,7 +192,7 @@
          }
       ],
       "max_score":12,
-      "user_score":2,
+      "user_score":10,
       "result":{
          "result":"Balanced appetite",
          "summary":{
@@ -576,7 +576,7 @@
          }
       ],
       "max_score":64,
-      "user_score":16,
+      "user_score":10,
       "result":{
          "result":"Low risk of gluten sensitivity",
          "summary":{
@@ -843,7 +843,7 @@
          }
       ],
       "max_score":12,
-      "user_score":1,
+      "user_score":12,
       "result":{
          "result":"High Proportion of Fast Twitch Muscle Fibres",
          "summary":{
@@ -1155,7 +1155,7 @@
          }
       ],
       "max_score":9,
-      "user_score":3,
+      "user_score":7,
       "result":{
          "result":"Moderate Muscle Development Potential - in response to strength training",
          "summary":{
@@ -1422,7 +1422,7 @@
          }
       ],
       "max_score":10,
-      "user_score":5,
+      "user_score":2,
       "result":{
          "result":"Moderate VO2 max Potential",
          "summary":{
@@ -2379,7 +2379,7 @@
          }
       ],
       "max_score":4,
-      "user_score":4,
+      "user_score":1,
       "result":{
          "result":"High sweat level",
          "summary":{
@@ -2700,7 +2700,7 @@
          }
       ],
       "max_score":14,
-      "user_score":4,
+      "user_score":1,
       "result":{
          "result":"Efficient use of dietary fat",
          "summary":{
@@ -2850,7 +2850,7 @@
          }
       ],
       "max_score":4,
-      "user_score":3,
+      "user_score":4,
       "result":{
          "result":"Low uptake of vitamin C",
          "summary":{
@@ -3195,7 +3195,7 @@
          }
       ],
       "max_score":2,
-      "user_score":0,
+      "user_score":1,
       "result":{
          "result":"Low risk",
          "summary":{
@@ -3777,7 +3777,7 @@
          }
       ],
       "max_score":24,
-      "user_score":9,
+      "user_score":24,
       "result":{
          "result":"Strong Power Profile",
          "summary":{
@@ -4149,7 +4149,7 @@
          }
       ],
       "max_score":6,
-      "user_score":3,
+      "user_score":6,
       "result":{
          "result":"Moderate risk of connective tissue injury",
          "summary":{
@@ -4299,7 +4299,7 @@
          }
       ],
       "max_score":4,
-      "user_score":1,
+      "user_score":2,
       "result":{
          "result":"Good uptake of vitamin D",
          "summary":{
@@ -4689,7 +4689,7 @@
          }
       ],
       "max_score":8,
-      "user_score":0,
+      "user_score":2,
       "result":{
          "result":"Normal uptake of vitamin A",
          "summary":{

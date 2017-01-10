@@ -1,5 +1,4 @@
-background-color: #F1F3F3
-}
+
 .axis {
     font: 15px sans-serif;
 }
@@ -7,7 +6,7 @@ background-color: #F1F3F3
 .axis line {
     fill: none;
     stroke: #D4D8DA;
-    stroke-width: 2px;
+    stroke-width: 1.5px;
     shape-rendering: crispEdges;
 }
 #chart {
