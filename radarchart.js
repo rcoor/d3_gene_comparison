@@ -1,12 +1,3 @@
-/*  [
-    {"area": "Central ", "value": 80},
-    {"area": "Kirkdale", "value": 40},
-    {"area": "Kensington ", "value": 40},
-    {"area": "Everton ", "value": 90},
-    {"area": "Picton ", "value": 60},
-    {"area": "Riverside ", "value": 80}
-  ]
-]*/
 function unique(list) {
     var result = [];
     $.each(list, function(i, e) {
@@ -16,7 +7,7 @@ function unique(list) {
 }
 
 var RadarChart = {
-    draw: function (id, d, options) {
+    draw: function (id, d, names, options) {
         var cfg = {
             radius: 2,
             w: 600,
@@ -24,6 +15,7 @@ var RadarChart = {
             factor: 1,
             factorLegend: .85,
             levels: 3,
+            legendPos: { x: 400, y: -20 },
             maxValue: 0,
             radians: 2 * Math.PI,
             opacityArea: 0.5,
@@ -113,11 +105,9 @@ var RadarChart = {
             .style("stroke-width", "1px");
 
         axis = axis.append("g")
-            .attr("class", "legend")
+            .attr("class", "category")
             .append("text")
             .html(function (d) { return wrap(d); })
-
-
 
         axis.style("font-family", "sans-serif")
             .text(function (d) { return d.name })
@@ -125,6 +115,7 @@ var RadarChart = {
                 var text = d;
                 document.getElementById('summary').innerHTML = d.result.summary.body;
             })
+            .transition()
             .style("font-family", "sans-serif")
             .style("font-size", "11px")
             .attr("text-anchor", "middle")
@@ -132,6 +123,28 @@ var RadarChart = {
             .attr("transform", function (d, i) { return "translate(0, -10)" })
             .attr("x", function (d, i) { return cfg.w / 2 * (1 - cfg.factorLegend * Math.sin(i * cfg.radians / total)) - 60 * Math.sin(i * cfg.radians / total); })
             .attr("y", function (d, i) { return cfg.h / 2 * (1 - Math.cos(i * cfg.radians / total)) - 20 * Math.cos(i * cfg.radians / total); });
+
+        /* Legend */
+        var legend = g
+            .selectAll(".legendItems")
+            .data(names)
+            .enter().append("g")
+            .attr("class", "legend")
+            .attr("data-legend", function (d) { console.log(d) });
+
+        legend.append("rect")
+            .style("fill", function (d, i) { return cfg.color(i) })
+            .attr("width", 10)
+            .attr("height", 10)
+            .attr("x", cfg.legendPos.x)
+            .attr("y", function (d, i) { return cfg.legendPos.y + i * 18 });
+
+        legend.append("text")
+            .text(function (d, i) { return d })
+            .style("font-size", "12px")
+            .style("font-family", "sans-serif")
+            .attr("x", cfg.legendPos.x + 16)
+            .attr("y", function (d, i) { return cfg.legendPos.y + 10 + i * 18 });
 
 
         d.forEach(function (y, x) {
@@ -376,7 +389,10 @@ function drawChart(filterValue) {
         userData.push(accData);
         data = userData;
 
-        RadarChart.draw("#chart", data, config);
+        // quickfix to names
+        let names = ['Your results', 'Average'];
+
+        RadarChart.draw("#chart", data, names, config);
     });
 });
 }

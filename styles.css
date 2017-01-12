@@ -1,4 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+* {
+    font-family: 'Roboto', sans-serif !important;
+}
 
+/* Site styles */
+.container {
+    margin-top: 100px;
+    padding: 0;
+}
+.container p.container-intro {
+    font-weight: 500 !important;
+}
+.container.first {
+    border-top: 1px solid rgba(0,0,0,0.64);
+}
+.container .row {
+    padding: 40px 0 40px 0;
+}
+
+/* Graph styles*/
 .axis {
     font: 15px sans-serif;
 }
@@ -10,7 +30,7 @@
     shape-rendering: crispEdges;
 }
 #chart {
-    position: absolute;
+
     top: 50px;
     left: 100px;
 }
