@@ -137,8 +137,7 @@ var RadarChart = {
                 return d.name
             })
             .on("click", function (d) {
-                var text = d;
-                document.getElementById('summary').innerHTML = d.result.summary.body;
+                loadSummary(d)
             })
             .transition()
             .style("font-family", "sans-serif")
@@ -264,10 +263,8 @@ var RadarChart = {
                 .style("fill", cfg.color(series))
                 .style("stroke-width", "2px")
                 .style("stroke", cfg.color(series)).style("fill-opacity", .9)
-                .on('click', function (d) {})
+                .on('click', function (d) { loadSummary(d);})
                 .on('mouseover', function (d) {
-                    console.log(d);
-
                     tooltip
                         .style("display", "inline-block")
                         .html((d.name) + "<br><span> Score: " + (parseInt((d.percentage))) + "%" + "<br>Result: " + d.result.result + "</span>");
@@ -315,6 +312,7 @@ function getAccumulatedData(callback) {
             category = countScores(category);
             result = getResultsFromBounds(category.percentage, category.bounds);
             return {
+                "username": "Average",
                 "name": category.category.name,
                 "id": category.category.id,
                 "score": category.score,
