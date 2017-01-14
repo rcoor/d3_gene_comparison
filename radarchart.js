@@ -343,9 +343,9 @@ function getUserData(callback) {
         data = data.map((category) => {
 
             category['percentage'] = (category.user_score / category.max_score * 100);
+            category['username'] = 'Neymar';
             return category;
         });
-
 
         callback(data);
     });
