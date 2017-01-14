@@ -4,30 +4,31 @@ function getSelectedValue(selector) {
 // create selection
 var selection = d3.select("#userSelection").append("select").on("change", function() {
     selectedValue = getSelectedValue(this);
+    if (selectedValue == "All") {
+        selectedValue = "";
+    };
     drawChart(selectedValue);
 });
 
 function loadSelection(select) {
-    var categories = [];
+    var categories = ["All"];
     getUserData((userData) => {
         userData.forEach(category => {
             var found = jQuery.inArray(category.category_group.name, categories);
             if (found < 0) {
                 // Element was not found, add it.
+                console.log(category.category_group.name);
                 categories.push(category.category_group.name);
             }
         });
+        data = categories;
+        select.selectAll("option")
+            .data(data)
+            .enter()
+            .append("option")
+            .attr("value", function (d) {
+                console.log(d); return d;
+            })
+            .html(function (d) { return d });
     });
-    console.log(categories);
-    data = ["nutrition","fitness","lifestyle"]//categories;
-    console.log(data);
-    select.selectAll("option")
-        .data(data)
-        .enter()
-        .append("option")
-        .attr("value", function (d) {
-            console.log(d); return d;
-        })
-        .html(function (d) { return d });
-
 }
