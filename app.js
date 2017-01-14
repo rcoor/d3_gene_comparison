@@ -1,4 +1,3 @@
-
-
-// Create selection
+drawChart("");
+loadSelection(selection);
 

@@ -369,67 +369,30 @@ function drawChart(filterValue) {
         var categories = []
         userData.forEach(category => {
             categories.push(category.name);
-    });
+        });
 
-        accData = accData.filter(category => {
-                var bool = false;
-        categories.forEach(name => {
-            if (category.name == name)
-        bool = true;
-    });
-        return bool;
-    });
+            accData = accData.filter(category => {
+                    var bool = false;
+            categories.forEach(name => {
+                if (category.name == name)
+            bool = true;
+        });
+            return bool;
+        });
 
-        accData = filterByCategory(accData, filterValue);
-        userData = filterByCategory(userData, filterValue);
-        accData = accData.sort(compare);
-        userData = userData.sort(compare);
+            accData = filterByCategory(accData, filterValue);
+            userData = filterByCategory(userData, filterValue);
+            accData = accData.sort(compare);
+            userData = userData.sort(compare);
 
-        userData = [userData];
-        userData.push(accData);
-        data = userData;
+            userData = [userData];
+            userData.push(accData);
+            data = userData;
 
-        // quickfix to names
-        let names = ['Your results', 'Average'];
+            // quickfix to names
+            let names = ['Your results', 'Average'];
 
-        RadarChart.draw("#chart", data, names, config);
-    });
-});
-}
-
-function getSelectedValue(selector) {
-    return d3.select(selector).property('value')
-}
-// create selection
-var selection = d3.select("#userSelection").append("select").on("change", function() {
-        selectedValue = getSelectedValue(this);
-        drawChart(selectedValue);
-    });
-
-function loadSelection(select) {
-    var categories = [];
-    getUserData((userData) => {
-        userData.forEach(category => {
-            var found = jQuery.inArray(category.category_group.name, categories);
-            if (found < 0) {
-                // Element was not found, add it.
-                categories.push(category.category_group.name);
-            }
+            RadarChart.draw("#chart", data, names, config);
         });
     });
-    console.log(categories);
-    data = ["nutrition","fitness","lifestyle"]//categories;
-    console.log(data);
-    select.selectAll("option")
-        .data(data)
-        .enter()
-        .append("option")
-        .attr("value", function (d) {
-            console.log(d); return d;
-        })
-        .html(function (d) { return d });
-
 }
-
-drawChart("");
-loadSelection(selection);
