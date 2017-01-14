@@ -1,7 +1,7 @@
 /**
  * Created by gruner on 1/14/17.
  */
-function loadBarChart(userCat,divId) {
+function loadBarChart(userCat, divId) {
     console.log(userCat);
     d3.select(divId + " svg").remove();
 
@@ -28,8 +28,8 @@ function loadBarChart(userCat,divId) {
 
     // set the dimensions and margins of the graph
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        width = 200 - margin.left - margin.right,
+        height = 200 - margin.top - margin.bottom;
 
 // set the ranges
     var x = d3.scaleBand()
