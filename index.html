@@ -15,6 +15,7 @@
                     <link rel="stylesheet" type="text/css" href="styles.css">
                     <script src="https://d3js.org/d3.v4.min.js"></script>
                     <script src="radarchart.js"></script>
+               <!--     <link rel="stylesheet" href="css/theme/black.css">-->
 </head>
 
 <body>
@@ -52,6 +53,19 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="text-center">
+                    <h3 id="summaryHeader">An insight into you</h3>
+                    <br>
+                    <p class="resultHeader" style="font-size: 20px;">
+                        <span></span>
+                    </p>
+                    <br>
+                </div>
+            </div>
+            <div id="imageContainer"></div>
+        </div>
+        <div class="row">
             <div class="col-md-8">
                 <h3 id="summaryHeader">An insight into you</h3>
                 <p id="summary"></p>
@@ -59,10 +73,6 @@
             <div class="col-md-4">
                 <div id="barchart"></div>
             </div>
-        </div>
-        <div class="row">
-            Your result is &nbsp; <span id="userResult"></span> most people have &nbsp;
-            <span id="averageResult"></span>
         </div>
         <div class="container first">
             <p class="container-intro">Data</p>
@@ -75,9 +85,37 @@
                 </div>
             </div>
         </div>
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [{
+                        src: 'plugin/markdown/marked.js'
+                    },
+                    {
+                        src: 'plugin/markdown/markdown.js'
+                    },
+                    {
+                        src: 'plugin/notes/notes.js',
+                        async: true
+                    },
+                    {
+                        src: 'plugin/highlight/highlight.js',
+                        async: true,
+                        callback: function () {
+                            hljs.initHighlightingOnLoad();
+                        }
+                    }
+                ]
+            });
+        </script>
+        <script src="barchart.js"></script>
+        <script src="userSelection.js"></script>
+        <script src="app.js"></script>
 </body>
-<script src="barchart.js"></script>
-<script src="userSelection.js"></script>
-<script src="app.js"></script>
 
 </html>

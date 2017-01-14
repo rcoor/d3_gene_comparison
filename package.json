@@ -1,0 +1,22 @@
+{
+  "name": "d3_gene_comparison",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcoor/d3_gene_comparison.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rcoor/d3_gene_comparison/issues"
+  },
+  "homepage": "https://github.com/rcoor/d3_gene_comparison#readme",
+  "dependencies": {
+    "reveal.js": "^3.4.0"
+  }
+}
