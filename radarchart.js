@@ -293,12 +293,8 @@ var config = {
     h: height,
     maxValue: 100,
     levels: 5,
-    ExtraWidthX: 300
+    ExtraWidthX: 1000
 }
-
-
-
-
 
 // fetch data
 function getAccumulatedData(callback) {

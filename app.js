@@ -10,12 +10,13 @@ function loadSummary(userCat) {
             return bool;
         });
         let names = ['Your results', 'Average'];
-        data = [userCat,accCat[0]];
-        loadBarChart(data,"#barchart");
+        data = [userCat, accCat[0]];
+        document.getElementById('userResult').innerHTML = userCat.result.result;
+        document.getElementById('averageResult').innerHTML = accCat[0].result.result;
+        loadBarChart(data, "#barchart");
     });
 
 };
 
 drawChart("");
 loadSelection(selection);
-
