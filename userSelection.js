@@ -17,7 +17,6 @@ function loadSelection(select) {
             var found = jQuery.inArray(category.category_group.name, categories);
             if (found < 0) {
                 // Element was not found, add it.
-                console.log(category.category_group.name);
                 categories.push(category.category_group.name);
             }
         });
@@ -27,7 +26,7 @@ function loadSelection(select) {
             .enter()
             .append("option")
             .attr("value", function (d) {
-                console.log(d); return d;
+                return d;
             })
             .html(function (d) { return d });
     });
