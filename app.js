@@ -16,8 +16,7 @@ function loadSummary(userCat) {
         addResultText(userCat, accCat[0]);
         addResultImage(userCat);
         loadBarChart(data, "#barchart");
-
-
+        $.fn.fullpage.moveSectionDown();
     });
 
 };

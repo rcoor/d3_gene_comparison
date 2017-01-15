@@ -1,136 +1,147 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-        crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/css/jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="/css/examples.css" />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/js/jquery.fullPage.min.js"></script>
+    <script type="text/javascript" src="/js/examples.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#fullpage').fullpage({
+                sectionsColor: ['#ffffff', '#ffffff', '#ffffff', 'ffffff', '#ffffff'],
+                anchors: ['intro', 'investigate-result', 'insight-into-you', 'result', 'data'],
+                menu: '#menu',
+            });
+        });
+    </script>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="radarchart.js"></script>
-   <!--     <link rel="stylesheet" href="css/theme/black.css">-->
+
 </head>
-
 <body>
-    <div id="fullpage">
-        <div class="container first">
-            <p class="container-intro">Comparison</p>
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="text-center" style="margin-bottom: 40px;">
-                        <h3>Who are you? Genetically speaking</h3>
-                        <p class="authors">By Theis Hjalte Thorn Jakobsen and Christian Grüner JAN 18, 2017</p>
-                        <p>We are all unqiue in some way. Facial features, emotions, way of thinking, etc. are all features that
-                            seperately or together define us as being unique. These differences often seem significant enough
-                            for us to be able to classify and recognize other people. In truth, many of the things that makes
-                            us unique are woven into our DNA as single mutations that often makes the whole difference.</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-3">
-                    <h4>Your genetic thumbprint</h4>
-                    <p>
-                        A weight-scoring algorithm has taken mutational data-points and given scores to different categories. The algorithm is based
-                        on reviewed scientific litterature and peoples genoptypes (mutations).
-                        <br> <br> By showing your data on a radar chart you essentially get your unique profile as a thumbprint,
-                        which is unique to you. Here it has been compared to an average person made from the accumulated data
-                        of 217 people. The data can be filtered into 4 areas, all, nutrition, fitness, and lifestyle.
-                        <br><br>
-                        <strong>Hover on a dot </strong>to see the outcome of the result.<br><br>
-                        <strong>Click a category </strong>to investigate the effect of your result.
-                    </p>
-                </div>
+<!--<ul id="menu">-->
+    <!--<li data-menuanchor="insight-into-you" class="active"><a class="insight" href="#insight-into-you">Insight into you</a></li>-->
+<!--</ul>-->
+
+<div id="fullpage">
+    <div class="section " id="section0">
+        <div class="intro">
+            <h3>Who are you? Genetically speaking</h3>
+            <p class="authors">By Theis Hjalte Thorn Jakobsen and Christian Grüner JAN 18, 2017</p>
+            <p>We are all unqiue in some way. Facial features, emotions, way of thinking, etc. are all features that
+                seperately or together define us as being unique. These differences often seem significant enough
+                for us to be able to classify and recognize other people. In truth, many of the things that makes
+                us unique are woven into our DNA as single mutations that often makes the whole difference.</p>
+        </div>
+        <div class="arrowDown">Start the journey by clicking here</div>
+    </div>
+    <div class="section " id="section1">
+        <div class="intro">
+            <div class="text-center" style="margin-bottom: 40px;">
+                <h4>Your genetic thumbprint</h4>
+                <p>
+                    A weight-scoring algorithm has taken mutational data-points and given scores to different categories. The algorithm is based
+                    on reviewed scientific litterature and peoples genoptypes (mutations).
+                    <br> <br> By showing your data on a radar chart you essentially get your unique profile as a thumbprint,
+                    which is unique to you. Here it has been compared to an average person made from the accumulated data
+                    of 217 people. The data can be filtered into 4 areas, all, nutrition, fitness, and lifestyle.
+                    <br><br>
+                    <strong>Hover on a dot </strong>to see the outcome of the result.<br><br>
+                    <strong>Click a category </strong>to investigate the effect of your result.
+                </p>
                 <div class="col-md-6">
                     <div id="userSelection"></div>
                     <div id="chart"></div>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="text-center">
-                        <h3 id="summaryHeader">An insight into you</h3>
-                        <br>
-                        <p class="resultHeader" style="font-size: 20px;">
-                            <span></span>
-                        </p>
-                        <br>
-                    </div>
-                </div>
+    </div>
+    <div class="section" id="section2">
+        <div class="intro">
+            <div class="text-center">
+                <h3 id="summaryHeader">An insight into you</h3>
+                <br>
+                <p class="resultHeader" style="font-size: 20px;">
+                    <span></span>
+                </p>
+                <br>
             </div>
+            <div id="imageContainer"></div>
         </div>
-        <div id="imageContainer"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <h3 id="summaryHeader">An insight into you</h3>
-                    <p id="summary"></p>
-                </div>
-                <div class="col-md-4">
-                    <div id="barchart"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>An insight into you</h3>
-                        <p id="summary"></p>
-                        <div id="barchart"></div>
-                    </div>
-                </div>
+    </div>
+    <div class="section" id="section3">
+        <div class="intro">
+            <div class="col-md-8">
+                <h3 id="summaryHeader">An insight into you</h3>
+                <p id="summary"></p>
             </div>
-        </div>
-        <div class="container first">
-            <p class="container-intro">Data</p>
+            <div class="col-md-4">
+                <div id="barchart"></div>
+            </div>
             <div class="row">
                 <div class="col-md-6">
-                    <h3>Data</h3>
-                    <p>The data was produced from a library of 217 people with 240.000 mutations each. The data was filtered
-                        and anonymized before being used in this visualization.</p>
-                    <h4>Scoring algorithm</h4>
+                    <h3>An insight into you</h3>
+                    <p id="summary"></p>
+                    <div id="barchart"></div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="lib/js/head.min.js"></script>
-    <script src="js/reveal.js"></script>
-    <script>
-        // More info https://github.com/hakimel/reveal.js#configuration
-        Reveal.initialize({
-            history: true,
+    <div class="section" id="section3">
+        <div class="intro">
+            <h3>Data</h3>
+            <p>The data was produced from a library of 217 people with 240.000 mutations each. The data was filtered
+                and anonymized before being used in this visualization.</p>
+            <h4>Scoring algorithm</h4>
+        </div>
+    </div>
+</div>
 
-            // More info https://github.com/hakimel/reveal.js#dependencies
-            dependencies: [{
-                    src: 'plugin/markdown/marked.js'
-                },
-                {
-                    src: 'plugin/markdown/markdown.js'
-                },
-                {
-                    src: 'plugin/notes/notes.js',
-                    async: true
-                },
-                {
-                    src: 'plugin/highlight/highlight.js',
-                    async: true,
-                    callback: function () {
-                        hljs.initHighlightingOnLoad();
-                    }
+
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [{
+            src: 'plugin/markdown/marked.js'
+        },
+            {
+                src: 'plugin/markdown/markdown.js'
+            },
+            {
+                src: 'plugin/notes/notes.js',
+                async: true
+            },
+            {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
                 }
-            ]
-        });
-    </script>
-    <script src="barchart.js"></script>
-    <script src="userSelection.js"></script>
-    <script src="app.js"></script>
-</body>
+            }
+        ]
+    });
+</script>
+<script src="barchart.js"></script>
+<script src="userSelection.js"></script>
+<script src="app.js"></script>
+<script>
+    $('.arrowDown').click(function(){
+        $.fn.fullpage.moveSectionDown();
+    });
+</script>
 
+</body>
 </html>

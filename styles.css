@@ -76,3 +76,7 @@ g.category {
 p.authors {
     font-size: 12px;
 }
+
+#summaryHeader {
+    margin-top: 20px;
+}
