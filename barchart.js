@@ -46,7 +46,7 @@ function loadBarChart(userCat,divId) {
             "translate(" + margin.left + "," + margin.top + ")");
 
     // Scale the range of the data in the domains
-    x.domain(data.map(function(d) { return d.percentage; }));
+    x.domain(data.map(function(d) { return d.username; }));
     y.domain([0, d3.max(data, function(d) { return d.percentage; })]);
 
     // append the rectangles for the bar chart
@@ -54,7 +54,7 @@ function loadBarChart(userCat,divId) {
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", function(d) { return x(d.percentage); })
+        .attr("x", function(d) { return x(d.username); })
         .attr("width", x.bandwidth())
         .attr("y", function(d) { return y(d.percentage); })
         .attr("height", function(d) { return height - y(d.percentage); });
@@ -65,8 +65,8 @@ function loadBarChart(userCat,divId) {
         .call(d3.axisBottom(x));
 
     // add the y Axis
-    svg.append("g")
-        .call(d3.axisLeft(y));
+    //svg.append("g")
+    //    .call(d3.axisLeft(y));
 
     // d3.select(window).on('resize', resize);
     //
