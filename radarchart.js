@@ -137,7 +137,7 @@ var RadarChart = {
                 return d.name
             })
             .on("click", function (d) {
-                loadSummary(d)
+                loadSummary(d);
             })
             .transition()
             .style("font-family", "sans-serif")
@@ -263,7 +263,10 @@ var RadarChart = {
                 .style("fill", cfg.color(series))
                 .style("stroke-width", "2px")
                 .style("stroke", cfg.color(series)).style("fill-opacity", .9)
-                .on('click', function (d) { loadSummary(d);})
+                .on('click', function (d) {
+                    loadSummary(d);
+                    $.fn.fullpage.moveSectionDown();
+                })
                 .on('mouseover', function (d) {
                     tooltip
                         .style("display", "inline-block")
@@ -414,19 +417,19 @@ function drawChart(filterValue) {
     getAccumulatedData((accData) => {
         getUserData((userData) => {
 
-        var categories = []
-        userData.forEach(category => {
-            categories.push(category.name);
-        });
+            var categories = []
+            userData.forEach(category => {
+                categories.push(category.name);
+            });
 
             accData = accData.filter(category => {
-                    var bool = false;
-            categories.forEach(name => {
-                if (category.name == name)
-            bool = true;
-        });
-            return bool;
-        });
+                var bool = false;
+                categories.forEach(name => {
+                    if (category.name == name)
+                        bool = true;
+                });
+                return bool;
+            });
 
             accData = filterByCategory(accData, filterValue);
             userData = filterByCategory(userData, filterValue);
