@@ -27,7 +27,7 @@ var RadarChart = {
             TranslateY: 30,
             ExtraWidthX: 100,
             ExtraWidthY: 100,
-            color: d3.scaleLinear().range(["#000000", "#d1d1d1"])
+            color: d3.scaleLinear().range(["#d73534", "#d1d1d1"])
         };
 
         if ('undefined' !== typeof options) {
@@ -296,7 +296,7 @@ var config = {
     h: height,
     maxValue: 100,
     levels: 5,
-    ExtraWidthX: 100
+    ExtraWidthX: 300
 }
 
 // fetch data
