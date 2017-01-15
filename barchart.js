@@ -1,7 +1,7 @@
 /**
  * Created by gruner on 1/14/17.
  */
-function loadBarChart(userCat,divId) {
+function loadBarChart(userCat, divId) {
     console.log(userCat);
     d3.select(divId + " svg").remove();
 
@@ -27,11 +27,16 @@ function loadBarChart(userCat,divId) {
     //     .tickFormat(percent);
 
     // set the dimensions and margins of the graph
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+    var margin = {
+            top: 20,
+            right: 20,
+            bottom: 30,
+            left: 40
+        },
+        width = 200 - margin.left - margin.right,
+        height = 200 - margin.top - margin.bottom;
 
-// set the ranges
+    // set the ranges
     var x = d3.scaleBand()
         .range([0, width])
         .padding(0.1);
@@ -49,6 +54,7 @@ function loadBarChart(userCat,divId) {
     x.domain(data.map(function(d) { return d.username; }));
     y.domain([0, d3.max(data, function(d) { return d.percentage; })]);
 
+
     // append the rectangles for the bar chart
     svg.selectAll(".bar")
         .data(data)
@@ -56,8 +62,12 @@ function loadBarChart(userCat,divId) {
         .attr("class", "bar")
         .attr("x", function(d) { return x(d.username); })
         .attr("width", x.bandwidth())
-        .attr("y", function(d) { return y(d.percentage); })
-        .attr("height", function(d) { return height - y(d.percentage); });
+        .attr("y", function (d) {
+            return y(d.percentage);
+        })
+        .attr("height", function (d) {
+            return height - y(d.percentage);
+        });
 
     // add the x Axis
     svg.append("g")

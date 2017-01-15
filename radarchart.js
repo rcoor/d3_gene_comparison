@@ -293,12 +293,8 @@ var config = {
     h: height,
     maxValue: 100,
     levels: 5,
-    ExtraWidthX: 300
+    ExtraWidthX: 100
 }
-
-
-
-
 
 // fetch data
 function getAccumulatedData(callback) {
@@ -336,12 +332,10 @@ function getUserData(callback) {
     d3.json("neymar.json", function (error, data) {
         if (error) throw error;
 
-
-
         data = data.map((category) => {
 
             category['percentage'] = (category.user_score / category.max_score * 100);
-            category['username'] = 'Neymar';
+            category['username'] = 'Your result';
             return category;
         });
 
