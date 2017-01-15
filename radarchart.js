@@ -187,6 +187,27 @@ var RadarChart = {
             });
 
 
+        // Create some guiding text and a line
+        g.append("line") // attach a line
+            .style("stroke", "black") // colour the line
+            .attr("x1", cfg.w + 95) // x position of the first end of the line
+            .attr("y1", 170) // y position of the first end of the line
+            .attr("x2", cfg.w + 120) // x position of the second end of the line
+            .attr("y2", 170); // y position of the second end of the line
+
+        g.append("text")
+            .text("click a category")
+            .attr("x", cfg.w + 125)
+            .attr("y", 173)
+            .style("font-size", "12px");
+
+        g.append("text")
+            .text("to investigate")
+            .attr("x", cfg.w + 125)
+            .attr("y", 189)
+            .style("font-size", "12px");
+
+
         d.forEach(function (y, x) {
             dataValues = [];
             g.selectAll(".nodes")

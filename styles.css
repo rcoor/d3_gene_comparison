@@ -165,6 +165,9 @@ p {
     shape-rendering: crispEdges;
 }
 
+path {
+    stroke: #11a;
+}
 #chart {
     top: 50px;
     left: 100px;
