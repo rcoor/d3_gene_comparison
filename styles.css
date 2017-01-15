@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700');
+
+/* Colors */
+
+.primary-color {
+    color: #d73534;
+}
+
 body {
     font-family: 'Roboto', sans-serif !important;
 }
@@ -75,6 +82,17 @@ button:hover {
     z-index: 99;
 }
 
+.text-extras {
+    margin-right: 0px;
+    margin-top: 50px;
+    font-size: 14px !important;
+    max-width: 320px;
+    text-align: left;
+}
+.text-extras p{
+       font-size: 14px !important;
+       line-height: 18px !important;
+}
 .button-continue.read-on {
     /*    position: absolute;
     margin: 0 auto;
@@ -84,9 +102,11 @@ button:hover {
     margin: 0 auto;
     margin-top: 20px;
 }
+
 .fingerprint {
-        z-index: 0;
+    z-index: 0;
 }
+
 .fingerprint i {
     font-size: 1000px;
     position: absolute;
