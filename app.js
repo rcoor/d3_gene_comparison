@@ -30,7 +30,7 @@ function addResultText(userResults, averageResults) {
     var outputText = resultTextGenerator(userResultText, averageResultText);
     var resultHeader = d3.select("p.resultHeader span");
     resultHeader.html(outputText);
-    console.log(userResults.product.img_path + "large.png")
+    //console.log(userResults.product.img_path + "large.png")
 }
 
 function resultTextGenerator(string1, string2) {

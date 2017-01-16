@@ -138,6 +138,8 @@
                     </div>
                 </div>
             </div>
+            <button class="selectCat button-continue">Investigate another category</button>
+            <button class="arrowDown button-continue">Continue</button>
         </div>
         <div class="section" id="section5">
             <div class="intro">
@@ -146,7 +148,17 @@
                     anonymized before being used in this visualization.</p>
                 <h4>Scoring algorithm</h4>
             </div>
+            <button class="selectCat button-continue">Investigate another category</button>
+            <button class="arrowDown button-continue">See credits</button>
         </div>
+        <div class="section" id="section6">
+            <div class="intro">
+                <h3>Credits</h3>
+                <p></p>
+            </div>
+            <button class="selectCat button-continue">Investigate another category</button>
+        </div>
+
     </div>
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
@@ -183,6 +195,10 @@
         $('.arrowDown').click(function () {
             $.fn.fullpage.moveSectionDown();
         });
+        $('.selectCat').click(function () {
+            $.fn.fullpage.moveTo('insight-into-you')
+        });
+
     </script>
 </body>
 

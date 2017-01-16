@@ -161,7 +161,7 @@ var RadarChart = {
             .enter().append("g")
             .attr("class", "legend")
             .attr("data-legend", function (d) {
-                console.log(d)
+                //console.log(d)
             });
 
         legend.append("rect")

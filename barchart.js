@@ -2,7 +2,7 @@
  * Created by gruner on 1/14/17.
  */
 function loadBarChart(userCat, divId) {
-    console.log(userCat);
+    //console.log(userCat);
     d3.select(divId + " svg").remove();
 
 
