@@ -1,15 +1,14 @@
 function loadHistogram(dataset) {
-    console.log(parseInt(d3.select('body').style('width'),10))
+    d3.select("#histogram svg").remove();
     var margin = {
-            top: 130,//(parseInt(d3.select('body').style('width'), 10) / 20),
-            right: (parseInt(d3.select('body').style('width'), 10) / 30),
-            bottom: 20,//(parseInt(d3.select('body').style('width'), 10) / 20),
-            left: (parseInt(d3.select('body').style('width'), 10) / 30)
+            top: 100,//(parseInt(d3.select('body').style('width'), 10) / 10),
+            right: (parseInt(d3.select('body').style('width'), 10) / 10),
+            bottom: (parseInt(d3.select('body').style('width'), 10) / 10),
+            left: (parseInt(d3.select('body').style('width'), 10) / 10)
         },
-        width = parseInt(d3.select('body').style('width'), 10)/8 - margin.left - margin.right,
-        height = parseInt(d3.select('body').style('height'), 10)/4 - margin.top - margin.bottom;
+        width = parseInt(d3.select('body').style('width'), 10)/1 - margin.left - margin.right,
+        height = parseInt(d3.select('body').style('height'), 10)/1.2 - margin.top - margin.bottom;
 
-    console.log(parseInt(d3.select('body').style('height'), 10)/4-margin.top-margin.bottom);
     var x0 = d3.scaleBand()
         .rangeRound([0,width], .1);
 
@@ -38,7 +37,7 @@ function loadHistogram(dataset) {
     var options = d3.keys(dataset[0]).filter(function (key) {
         return key !== "label";
     });
-    console.log(dataset);
+
     dataset.forEach(function (d) {
         d.valores = options.map(function (name) {
             return {name: name, value: +d[name]};
@@ -128,14 +127,14 @@ function loadHistogram(dataset) {
 
     legend.append("rect")
         .attr("x", width - 18)
-        .attr("y", -118)
+        .attr("y", -90)
         .attr("width", 18)
         .attr("height", 18)
         .style("fill", color);
 
     legend.append("text")
         .attr("x", width - 24)
-        .attr("y", -108)
+        .attr("y", -82)
         .attr("dy", ".35em")
         .style("text-anchor", "end")
         .text(function (d) {
