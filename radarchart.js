@@ -130,7 +130,7 @@ var RadarChart = {
             .append("text");
 
         axis.style("font-family", "sans-serif")
-            .html(function (d) {
+            .text(function (d) {
                 return d.name;
             })
             .on("click", function (d) {
@@ -152,8 +152,8 @@ var RadarChart = {
             });
 
         // format text lavels
-        d3.selectAll(".category text").attr("dy", 0).call(wrap, 40);
-
+/*        d3.selectAll(".category text").attr("dy", 0).call(wrap, 40);
+*/
         /* Legend */
         var legend = g
             .selectAll(".legendItems")
@@ -408,14 +408,6 @@ function compare(a, b) {
     return 0;
 }
 
-function wrap(text) {
-    /*    var concattedString = '';
-        text.split(" ").forEach(x => {
-            concattedString += '<tspan dy="1.4em">' + x + '</tspan>';
-        });
-        return concattedString;*/
-    return text
-}
 
 function filterByCategory(array, type) {
     if (!type) return array;
@@ -481,7 +473,7 @@ function wrap(text, width) {
         x = text.attr("x"),
         dy = parseFloat(text.attr("dy")),
         tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "px");
-        console.log(d3.select(text)['_groups'][0][0])
+
     while (word = words.pop()) {
       line.push(word);
       tspan.text(line.join(" "));
