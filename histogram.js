@@ -1,14 +1,15 @@
 function loadHistogram(dataset) {
-
+    console.log(parseInt(d3.select('body').style('width'),10))
     var margin = {
-            top: (parseInt(d3.select('body').style('width'), 10) / 10),
-            right: (parseInt(d3.select('body').style('width'), 10) / 20),
-            bottom: (parseInt(d3.select('body').style('width'), 10) / 5),
-            left: (parseInt(d3.select('body').style('width'), 10) / 20)
+            top: 130,//(parseInt(d3.select('body').style('width'), 10) / 20),
+            right: (parseInt(d3.select('body').style('width'), 10) / 30),
+            bottom: 20,//(parseInt(d3.select('body').style('width'), 10) / 20),
+            left: (parseInt(d3.select('body').style('width'), 10) / 30)
         },
-        width = parseInt(d3.select('body').style('width'), 10) - margin.left - margin.right,
-        height = parseInt(d3.select('body').style('height'), 10) - margin.top - margin.bottom;
+        width = parseInt(d3.select('body').style('width'), 10)/8 - margin.left - margin.right,
+        height = parseInt(d3.select('body').style('height'), 10)/4 - margin.top - margin.bottom;
 
+    console.log(parseInt(d3.select('body').style('height'), 10)/4-margin.top-margin.bottom);
     var x0 = d3.scaleBand()
         .rangeRound([0,width], .1);
 
@@ -37,7 +38,7 @@ function loadHistogram(dataset) {
     var options = d3.keys(dataset[0]).filter(function (key) {
         return key !== "label";
     });
-
+    console.log(dataset);
     dataset.forEach(function (d) {
         d.valores = options.map(function (name) {
             return {name: name, value: +d[name]};
@@ -109,7 +110,7 @@ function loadHistogram(dataset) {
             l = elements.length
             l = l - 1
             elementData = elements[l].__data__
-            divTooltip.html((d.label) + "<br>" + elementData.name + "<br>" + elementData.value + "%");
+            divTooltip.html((d.label) + "<br>" + elementData.name + "<br>" + elementData.value);
         });
     bar
         .on("mouseout", function (d) {
@@ -127,13 +128,14 @@ function loadHistogram(dataset) {
 
     legend.append("rect")
         .attr("x", width - 18)
+        .attr("y", -118)
         .attr("width", 18)
         .attr("height", 18)
         .style("fill", color);
 
     legend.append("text")
         .attr("x", width - 24)
-        .attr("y", 9)
+        .attr("y", -108)
         .attr("dy", ".35em")
         .style("text-anchor", "end")
         .text(function (d) {

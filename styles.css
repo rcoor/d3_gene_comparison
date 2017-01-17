@@ -213,3 +213,7 @@ g.category {
 #summaryHeader {
     margin-top: 20px;
 }
+
+#histogram text {
+    font-size: 8px;
+}

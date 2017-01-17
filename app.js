@@ -90,8 +90,8 @@ function getAccumulated(callback) {
 drawChart("");
 loadSelection(selection);
 var data = getAccumulated((data) => {
-    //data = [data[0]];
-    //loadHistogram(data);
-    data = [data[0]];
-    loadHistogram(data);
+    data.forEach((d) => {
+        loadHistogram([d]);
+    });
+
 });
