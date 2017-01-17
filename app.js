@@ -71,7 +71,7 @@ function getAccumulated(callback) {
                 }
 
                 bound = getResultsFromBounds(score,bounds);
-                console.log(bound);
+
                 if (boundCount[bound] == undefined) {
                     boundCount[bound] = scores.count;
                 } else {
@@ -87,8 +87,7 @@ function getAccumulated(callback) {
 
 function histogram(userCat) {
     getAccumulated((data) => {
-        console.log(data);
-        console.log(userCat)
+
         data = data.filter((d) =>
         {
             var bool = false;

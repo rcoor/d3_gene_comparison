@@ -5,7 +5,7 @@ function loadBarChart(userCat, divId) {
 
     // set the dimensions and margins of the graph
     var margin = {
-            top: 20,
+            top: 45,
             right: 110,
             bottom: 30,
             left: 40
@@ -28,7 +28,7 @@ function loadBarChart(userCat, divId) {
             "translate(" + margin.left + "," + margin.top + ")");
 
     // Scale the range of the data in the domains
-    x.domain(data.map(function(d) { return d.result.result; }));
+    x.domain(data.map(function(d) { return d.username; }));
     y.domain([0, d3.max(data, function(d) { return d.percentage; })]);
 
     color = d3.scaleLinear().range(["#d73534", "#d1d1d1"]);
@@ -38,8 +38,8 @@ function loadBarChart(userCat, divId) {
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", function(d) { console.log(d);return x(d.result.result); })
-        .attr("width", x.bandwidth())
+        .attr("x", function(d) { console.log(d);return x(d.username); })
+        .attr("width", x.bandwidth)
         .attr("y", function (d) {
             return y(d.percentage);
         })
@@ -66,16 +66,17 @@ function loadBarChart(userCat, divId) {
 
     legend.append("rect")
         .attr("x", width + 90)
+        .attr("y", -40)
         .attr("width", 18)
         .attr("height", 18)
         .style("fill", (d,i) => { return color(i)});
 
     legend.append("text")
         .attr("x", width + 84)
-        .attr("y", 9)
+        .attr("y", -32)
         .attr("dy", ".35em")
         .style("text-anchor", "end")
-        .text(function(d) { return d.username; });
+        .text(function(d) { return d.result.result; });
 
 
 };

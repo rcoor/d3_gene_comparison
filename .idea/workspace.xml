@@ -7,9 +7,7 @@
     <list default="true" id="cbb1e291-3088-4c2d-a063-800d77ca5754" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/histogram.js" afterPath="$PROJECT_DIR$/histogram.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/radarchart.js" afterPath="$PROJECT_DIR$/radarchart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles.css" afterPath="$PROJECT_DIR$/styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/barchart.js" afterPath="$PROJECT_DIR$/barchart.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,7 +28,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="radarchart.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="radarchart.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/radarchart.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="393">
@@ -40,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="barchart.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="barchart.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/barchart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="604">
-              <caret line="67" column="29" lean-forward="false" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
+            <state relative-caret-position="612">
+              <caret line="46" column="42" lean-forward="false" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -63,8 +61,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="604">
-              <caret line="72" column="59" lean-forward="true" selection-start-line="72" selection-start-column="59" selection-end-line="72" selection-end-column="59" />
+            <state relative-caret-position="514">
+              <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -141,8 +139,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>on(&quot;click</find>
-      <find>getaccumulated</find>
       <find>on('mouse</find>
       <find>chart</find>
       <find>css</find>
@@ -170,7 +166,9 @@
       <find>28</find>
       <find>filter</find>
       <find>getresultsfro</find>
+      <find>bar</find>
       <find>console</find>
+      <find>console.l</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -183,11 +181,11 @@
         <option value="$PROJECT_DIR$/userSelection.js" />
         <option value="$PROJECT_DIR$/index2.html" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/barchart.js" />
         <option value="$PROJECT_DIR$/styles.css" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/histogram.js" />
         <option value="$PROJECT_DIR$/radarchart.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/barchart.js" />
       </list>
     </option>
   </component>
@@ -325,12 +323,12 @@
       <workItem from="1484479475300" duration="2521000" />
       <workItem from="1484553418264" duration="2490000" />
       <workItem from="1484591560094" duration="13601000" />
-      <workItem from="1484677914503" duration="6516000" />
+      <workItem from="1484677914503" duration="7142000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62933000" />
+    <option name="totallyTimeSpent" value="63559000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1061" extended-state="0" />
@@ -365,7 +363,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/app.js</url>
-          <line>102</line>
+          <line>101</line>
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="1" />
@@ -742,18 +740,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/radarchart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="72" column="59" lean-forward="true" selection-start-line="72" selection-start-column="59" selection-end-line="72" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/barchart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="67" column="29" lean-forward="false" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
+        <state relative-caret-position="393">
+          <caret line="390" column="32" lean-forward="false" selection-start-line="390" selection-start-column="32" selection-end-line="390" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -766,10 +756,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/radarchart.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="390" column="32" lean-forward="false" selection-start-line="390" selection-start-column="32" selection-end-line="390" selection-end-column="32" />
+        <state relative-caret-position="514">
+          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/barchart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="46" column="42" lean-forward="false" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
           <folding />
         </state>
       </provider>
