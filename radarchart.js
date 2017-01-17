@@ -23,7 +23,7 @@ var RadarChart = {
             radians: 2 * Math.PI,
             opacityArea: 0.5,
             ToRight: 5,
-            TranslateX: 80,
+            TranslateX: 98,
             TranslateY: 30,
             ExtraWidthX: 100,
             ExtraWidthY: 100,
@@ -50,7 +50,7 @@ var RadarChart = {
 
         var g = d3.select(id)
             .append("svg")
-            .attr("width", cfg.w + cfg.ExtraWidthX)
+            .attr("width", cfg.w + cfg.ExtraWidthX + 10)
             .attr("height", cfg.h + cfg.ExtraWidthY)
             .append("g")
             .attr("transform", "translate(" + cfg.TranslateX + "," + cfg.TranslateY + ")");
@@ -127,14 +127,11 @@ var RadarChart = {
 
         axis = axis.append("g")
             .attr("class", "category")
-            .append("text")
-            .html(function (d) {
-                return wrap(d);
-            })
+            .append("text");
 
         axis.style("font-family", "sans-serif")
-            .text(function (d) {
-                return d.name
+            .html(function (d) {
+                return d.name;
             })
             .on("click", function (d) {
                 loadSummary(d);
@@ -153,6 +150,9 @@ var RadarChart = {
             .attr("y", function (d, i) {
                 return cfg.h / 2 * (1 - Math.cos(i * cfg.radians / total)) - 20 * Math.cos(i * cfg.radians / total);
             });
+
+        // format text lavels
+        d3.selectAll(".category text").attr("dy", 0).call(wrap, 40);
 
         /* Legend */
         var legend = g
@@ -467,4 +467,30 @@ function drawChart(filterValue) {
             RadarChart.draw("#chart", data, names, config);
         });
     });
+}
+
+function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 9, // ems
+        y = text.attr("y"),
+        x = text.attr("x"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "px");
+        console.log(d3.select(text)['_groups'][0][0])
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", x ).attr("y", y).attr("dy", ++lineNumber + lineHeight + dy + "px").text(word);
+      }
+    }
+  });
 }
