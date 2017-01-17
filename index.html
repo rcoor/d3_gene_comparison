@@ -11,8 +11,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#fullpage').fullpage({
-                sectionsColor: ['#ffffff', '#ffffff', '#ffffff', 'ffffff', '#ffffff', 'ffffff', '#ffffff'],
-                anchors: ['intro', 'investigate-result', 'insight-into-you', 'result', 'result-summary','dataset','credit'],
+                sectionsColor: ['#ffffff', '#ffffff', '#ffffff', 'ffffff', '#ffffff', 'ffffff',
+                    '#ffffff'
+                ],
+                anchors: ['intro', 'investigate-result', 'insight-into-you', 'result', 'result-summary',
+                    'dataset', 'credit'
+                ],
                 menu: '#menu',
             });
         });
@@ -46,9 +50,9 @@
             <div class="intro" style="z-index: 99;">
                 <div class="text-center" style="margin-bottom: 40px;">
                     <h1 class="serif">A lot of data to compare with</h1>
-                    <p class="serif">Your genetic fingerprint; So what do your genes tell about you, and how are you unique from everyone else?
-                        Mutations are really just differences in DNA that varies from most people, thus classification of
-                        mutations into phenotypical alterations is a natural way of visualising gene data.</p>
+                    <p class="serif">Your genetic fingerprint; So what do your genes tell about you, and how are you unique from everyone
+                        else? Mutations are really just differences in DNA that varies from most people, thus classification
+                        of mutations into phenotypical alterations is a natural way of visualising gene data.</p>
                     <br><br>
                     <p class="serif">
                         <span class="large serif">288</span> people have been probed for <span class="large serif">240.000</span>                        mutations where approximately 100 SNPs have been linked to categories within <span class="large serif">fitness,
@@ -88,18 +92,17 @@
                     <div class="text-extras" style="display: inline-block;">
                         <p class="header primary-color">The radar chart
                         </p>
-                          <p class="body">Each category have been given a percentage score based their phenotypical penetrance. Hover over a point to see it's outcome.
+                        <p class="body">Each category have been given a percentage score based their phenotypical penetrance. Hover over
+                            a point to see it's outcome.
                         </p>
                         <br><br>
-                             <p class="header primary-color">Filter the data
+                        <p class="header primary-color">Filter the data
                         </p>
-                          <p class="body">Each category can be classified as being either a fitness, nutrition, or lifestyle category.
+                        <p class="body">Each category can be classified as being either a fitness, nutrition, or lifestyle category.
                         </p>
                         <div id="userSelection" style="margin-left: 80px;"></div>
-
                     </div>
-
-                    <div style="display: inline-block; vertical-align:top;" >
+                    <div style="display: inline-block; vertical-align:top;">
                         <div id="chart"></div>
                     </div>
                     <p class="serif">Click a category to continue</p>
@@ -109,7 +112,7 @@
         <div class="section" id="section3">
             <div class="intro">
                 <div class="text-center">
-                    <h2 id="summaryHeader" class="serif">Go back and pick a category</h2>
+                    <h2 id="summaryHeader2" class="serif">Go back and pick a category</h2>
                     <br>
                     <p class="resultHeader" style="font-size: 20px;">
                         <span></span>
@@ -124,7 +127,7 @@
         <div class="section" id="section4">
             <div class="intro">
                 <div class="col-md-8">
-                    <h3 id="summaryHeader">An insight into you</h3>
+                    <h3 class="serif" id="summaryHeader">An insight into you</h3>
                     <p id="summary"></p>
                 </div>
                 <div class="col-md-4">
@@ -143,15 +146,7 @@
         </div>
         <div class="section" id="section5">
             <div class="intro">
-                <h3 class="serif">Data</h3>
-                <p class="serif">The data was produced from a library of 288 people with 240.000 mutations each. The data was filtered and
-                    anonymized before being used in this visualization.</p>
-                <h4 class="serif">Scoring algorithm</h4>
-                <p class="serif">
-                    The scoring for each category is based on a weight-scoring algorithm. Litterature on genotypes that are linked to specific categories are reviewed and scores for different genotype variants are applied. Some categories are build from multiple genotypes and some are binary, meaning that the genotype works as a on/off switch for a specific phenotype. The sum of contribution for each genotype is used as a max score for the given category. When a test is being done on a person the genotypes are linked to the scores and a score is applied.
-                    This is then compared with the max score and thus a percentage score can be calculated. The outcome of a category is then set as bounds in percentage, e.g. score <= 25 gives low, score <= 50 gives medium low, score <= 75 medium high, etc. Each category is also applied a confidence score (not shown here).
-                </p>
-                <h4>Histogram</h4>
+                <h1 class="serif">Histogram: What did other people get?</h1>
                 <div id="histogram"></div>
             </div>
             <button class="selectCat button-continue">Investigate another category</button>
@@ -159,13 +154,29 @@
         </div>
         <div class="section" id="section6">
             <div class="intro">
+                <h2 class="serif">Data</h2>
+                <p class="serif">The data was produced from a library of 288 people with 240.000 mutations each. The data was filtered and
+                    anonymized before being used in this visualization.</p>
+                <h3 class="serif">Scoring algorithm</h3>
+                <p class="serif">
+                    The scoring for each category is based on a weight-scoring algorithm. Litterature on genotypes that are linked to specific
+                    categories are reviewed and scores for different genotype variants are applied. Some categories are build
+                    from multiple genotypes and some are binary, meaning that the genotype works as a on/off switch for a
+                    specific phenotype. The sum of contribution for each genotype is used as a max score for the given category.
+                    When a test is being done on a person the genotypes are linked to the scores and a score is applied.
+                    This is then compared with the max score and thus a percentage score can be calculated. The outcome of
+                    a category is then set as bounds in percentage, e.g. score
+                    <=2 5 gives low, score <=5 0 gives medium low, score <=7 5 medium high, etc. Each category is also applied a confidence score
+                        (not shown here). </p>
+            </div>
+        </div>
+        <div class="section" id="section7">
+            <div class="intro">
                 <h3>Credits</h3>
-
                 <p>d3v4 radar chart: <a href="http://bl.ocks.org/nbremer/6506614"> http://bl.ocks.org/nbremer/6506614</a></p>
             </div>
             <button class="selectCat button-continue">Investigate another category</button>
         </div>
-
     </div>
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
@@ -206,7 +217,6 @@
         $('.selectCat').click(function () {
             $.fn.fullpage.moveTo('insight-into-you')
         });
-
     </script>
 </body>
 

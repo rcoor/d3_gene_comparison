@@ -2,6 +2,7 @@ function loadSummary(userCat) {
     var text = userCat;
     document.getElementById('summary').innerHTML = userCat.result.summary.body;
     document.getElementById('summaryHeader').innerHTML = userCat.name;
+    document.getElementById('summaryHeader2').innerHTML = userCat.name;
     getAccumulatedData((accData) => {
         var accCat = accData.filter(category => {
             var bool = false;
