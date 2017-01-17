@@ -132,7 +132,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <h3>An insight into you</h3>
+                        <!--<h3>An insight into you</h3>-->
                         <p id="summary"></p>
                         <div id="barchart"></div>
                     </div>
@@ -143,10 +143,14 @@
         </div>
         <div class="section" id="section5">
             <div class="intro">
-                <h3>Data</h3>
-                <p>The data was produced from a library of 217 people with 240.000 mutations each. The data was filtered and
+                <h3 class="serif">Data</h3>
+                <p class="serif">The data was produced from a library of 288 people with 240.000 mutations each. The data was filtered and
                     anonymized before being used in this visualization.</p>
-                <h4>Scoring algorithm</h4>
+                <h4 class="serif">Scoring algorithm</h4>
+                <p class="serif">
+                    The scoring for each category is based on a weight-scoring algorithm. Litterature on genotypes that are linked to specific categories are reviewed and scores for different genotype variants are applied. Some categories are build from multiple genotypes and some are binary, meaning that the genotype works as a on/off switch for a specific phenotype. The sum of contribution for each genotype is used as a max score for the given category. When a test is being done on a person the genotypes are linked to the scores and a score is applied.
+                    This is then compared with the max score and thus a percentage score can be calculated. The outcome of a category is then set as bounds in percentage, e.g. score <= 25 gives low, score <= 50 gives medium low, score <= 75 medium high, etc. Each category is also applied a confidence score (not shown here).
+                </p>
             </div>
             <button class="selectCat button-continue">Investigate another category</button>
             <button class="arrowDown button-continue">See credits</button>
@@ -154,7 +158,8 @@
         <div class="section" id="section6">
             <div class="intro">
                 <h3>Credits</h3>
-                <p></p>
+
+                <p>d3v4 radar chart: <a href="http://bl.ocks.org/nbremer/6506614"> http://bl.ocks.org/nbremer/6506614</a></p>
             </div>
             <button class="selectCat button-continue">Investigate another category</button>
         </div>
