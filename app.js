@@ -17,21 +17,19 @@ function loadSummary(userCat) {
         addResultText(userCat, accCat[0]);
         addResultImage(userCat);
         loadBarChart(data, "#barchart");
+        histogram(userCat);
         $.fn.fullpage.moveSectionDown();
     });
 
 };
 
 function addResultText(userResults, averageResults) {
-    /*    document.getElementById('userResult').innerHTML = userCat.result.result;
-        document.getElementById('averageResult').innerHTML = accCat[0].result.result;*/
     var userResultText = userResults.result.result;
     var averageResultText = averageResults.result.result;
 
     var outputText = resultTextGenerator(userResultText, averageResultText);
     var resultHeader = d3.select("p.resultHeader span");
     resultHeader.html(outputText);
-    //console.log(userResults.product.img_path + "large.png")
 }
 
 function resultTextGenerator(string1, string2) {
@@ -63,6 +61,7 @@ function getAccumulated(callback) {
 
             category = category.response;
             var boundCount = {"label":category.category.name};
+            console.log(category.bounds)
             bounds = category.bounds;
             category.accumulated_scores.forEach((scores) => {
                 if (scores.score == 0) {
@@ -72,6 +71,7 @@ function getAccumulated(callback) {
                 }
 
                 bound = getResultsFromBounds(score,bounds);
+
                 if (boundCount[bound] == undefined) {
                     boundCount[bound] = scores.count;
                 } else {
@@ -85,13 +85,21 @@ function getAccumulated(callback) {
     });
 }
 
+function histogram(userCat) {
+    getAccumulated((data) => {
 
+        data = data.filter((d) =>
+        {
+            var bool = false;
+            if (d.label == userCat.name) {
+                bool = true;
+            }
+            return bool
+        });
+        loadHistogram(data);
+    });
+};
 
 drawChart("");
 loadSelection(selection);
-var data = getAccumulated((data) => {
-    data.forEach((d) => {
-        loadHistogram([d]);
-    });
 
-});
