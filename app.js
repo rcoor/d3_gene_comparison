@@ -52,5 +52,45 @@ function addResultImage(userResults) {
         .attr('width', '100%');
 }
 
+function getAccumulated(callback) {
+    d3.json("data.json", function (error, data) {
+        if (error) throw error;
+
+        dataset = []
+
+        data = data.map(category => {
+
+            category = category.response;
+            var boundCount = {"label":category.category.name};
+            bounds = category.bounds;
+            category.accumulated_scores.forEach((scores) => {
+                if (scores.score == 0) {
+                    score = 0;
+                } else {
+                    score = (scores.score / category.max_score)*100;
+                }
+
+                bound = getResultsFromBounds(score,bounds);
+                if (boundCount[bound] == undefined) {
+                    boundCount[bound] = scores.count;
+                } else {
+                    boundCount[bound] = boundCount[bound] + scores.count;
+                }
+            });
+            dataset.push(boundCount)
+            return
+        })
+        callback(dataset);
+    });
+}
+
+
+
 drawChart("");
 loadSelection(selection);
+var data = getAccumulated((data) => {
+    //data = [data[0]];
+    //loadHistogram(data);
+    data = [data[1]];
+    loadHistogram(data);
+});

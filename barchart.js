@@ -1,39 +1,16 @@
-/**
- * Created by gruner on 1/14/17.
- */
+
 function loadBarChart(userCat, divId) {
     //console.log(userCat);
     d3.select(divId + " svg").remove();
 
-
-    // // let make it responsive and sexy
-    // var margin = {top: 30, right: 10, bottom: 30, left: 10}
-    //     , width = parseInt(d3.select('#chart').style('width'), 10)
-    //     , width = width - margin.left - margin.right
-    //     , barHeight = 20
-    //     , percent = d3.format('%');
-    //
-    // // scales and axes
-    // var x = d3.scaleLinear()
-    //     .range([0, width])
-    //     .domain([0, .4]); // hard-coding this because I know the data
-    //
-    // // ordinal scales are easier for uniform bar heights
-    // // I'll set domain and rangeBands after data loads
-    // var y = d3.scaleOrdinal();
-    //
-    // var xAxis = d3.axisBottom()
-    //     .scale(x)
-    //     .tickFormat(percent);
-
     // set the dimensions and margins of the graph
     var margin = {
             top: 20,
-            right: 20,
+            right: 110,
             bottom: 30,
             left: 40
         },
-        width = 200 - margin.left - margin.right,
+        width = 400 - margin.left - margin.right,
         height = 200 - margin.top - margin.bottom;
 
     // set the ranges
@@ -51,23 +28,25 @@ function loadBarChart(userCat, divId) {
             "translate(" + margin.left + "," + margin.top + ")");
 
     // Scale the range of the data in the domains
-    x.domain(data.map(function(d) { return d.username; }));
+    x.domain(data.map(function(d) { return d.result.result; }));
     y.domain([0, d3.max(data, function(d) { return d.percentage; })]);
 
+    color = d3.scaleLinear().range(["#d73534", "#d1d1d1"]);
 
     // append the rectangles for the bar chart
     svg.selectAll(".bar")
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", function(d) { return x(d.username); })
+        .attr("x", function(d) { console.log(d);return x(d.result.result); })
         .attr("width", x.bandwidth())
         .attr("y", function (d) {
             return y(d.percentage);
         })
         .attr("height", function (d) {
             return height - y(d.percentage);
-        });
+        })
+        .style("fill", (d,i) => { return color(i) });
 
     // add the x Axis
     svg.append("g")
@@ -78,40 +57,25 @@ function loadBarChart(userCat, divId) {
     //svg.append("g")
     //    .call(d3.axisLeft(y));
 
-    // d3.select(window).on('resize', resize);
-    //
-    // function resize() {
-    //     // update width
-    //     width = parseInt(d3.select('#chart').style('width'), 10);
-    //     width = width - margin.left - margin.right;
-    //
-    //     // resize the chart
-    //     x.range([0, width]);
-    //     d3.select(chart.node().parentNode)
-    //         .style('height', (y.rangeExtent()[1] + margin.top + margin.bottom) + 'px')
-    //         .style('width', (width + margin.left + margin.right) + 'px');
-    //
-    //     chart.selectAll('rect.background')
-    //         .attr('width', width);
-    //
-    //     chart.selectAll('rect.percent')
-    //         .attr('width', function(d) { return x(d.percent); });
-    //
-    //     // update median ticks
-    //     var median = d3.median(chart.selectAll('.bar').data(),
-    //         function(d) { return d.percent; });
-    //
-    //     chart.selectAll('line.median')
-    //         .attr('x1', x(median))
-    //         .attr('x2', x(median));
-    //
-    //
-    //     // update axes
-    //     chart.select('.x.axis.top').call(xAxis.orient('top'));
-    //     chart.select('.x.axis.bottom').call(xAxis.orient('bottom'));
+    // adding legends
+    var legend = svg.selectAll(".legend")
+        .data(data)
+        .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
-    //}
+    legend.append("rect")
+        .attr("x", width + 90)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", (d,i) => { return color(i)});
 
+    legend.append("text")
+        .attr("x", width + 84)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "end")
+        .text(function(d) { return d.username; });
 
 
 };

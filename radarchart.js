@@ -388,7 +388,7 @@ function getResultsFromBounds(percentage, bounds) {
     var bool = false;
     for (var i = 0; i < bounds.length; i++) {
         if (i == 0) {
-            bool = percentage < bounds[i].bound && percentage > 0;
+            bool = percentage < bounds[i].bound && percentage >= 0;
 
         } else {
 

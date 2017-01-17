@@ -11,8 +11,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#fullpage').fullpage({
-                sectionsColor: ['#ffffff', '#ffffff', '#ffffff', 'ffffff', '#ffffff'],
-                anchors: ['intro', 'investigate-result', 'insight-into-you', 'result', 'data'],
+                sectionsColor: ['#ffffff', '#ffffff', '#ffffff', 'ffffff', '#ffffff', 'ffffff', '#ffffff'],
+                anchors: ['intro', 'investigate-result', 'insight-into-you', 'result', 'result-summary','dataset','credit'],
                 menu: '#menu',
             });
         });
@@ -146,7 +146,8 @@
                 <h3>Data</h3>
                 <p>The data was produced from a library of 217 people with 240.000 mutations each. The data was filtered and
                     anonymized before being used in this visualization.</p>
-                <h4>Scoring algorithm</h4>
+                <h4>Histogram</h4>
+                <div id="histogram"></div>
             </div>
             <button class="selectCat button-continue">Investigate another category</button>
             <button class="arrowDown button-continue">See credits</button>
@@ -190,6 +191,7 @@
     </script>
     <script src="barchart.js"></script>
     <script src="userSelection.js"></script>
+    <script src="histogram.js"></script>
     <script src="app.js"></script>
     <script>
         $('.arrowDown').click(function () {
