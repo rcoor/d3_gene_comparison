@@ -11,8 +11,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#fullpage').fullpage({
-                sectionsColor: ['#ffffff', '#ffffff', '#ffffff', 'ffffff', '#ffffff'],
-                anchors: ['intro', 'investigate-result', 'insight-into-you', 'result', 'data'],
+                sectionsColor: ['#ffffff', '#ffffff', '#ffffff', 'ffffff', '#ffffff', 'ffffff', '#ffffff'],
+                anchors: ['intro', 'investigate-result', 'insight-into-you', 'result', 'result-summary','dataset','credit'],
                 menu: '#menu',
             });
         });
@@ -151,6 +151,8 @@
                     The scoring for each category is based on a weight-scoring algorithm. Litterature on genotypes that are linked to specific categories are reviewed and scores for different genotype variants are applied. Some categories are build from multiple genotypes and some are binary, meaning that the genotype works as a on/off switch for a specific phenotype. The sum of contribution for each genotype is used as a max score for the given category. When a test is being done on a person the genotypes are linked to the scores and a score is applied.
                     This is then compared with the max score and thus a percentage score can be calculated. The outcome of a category is then set as bounds in percentage, e.g. score <= 25 gives low, score <= 50 gives medium low, score <= 75 medium high, etc. Each category is also applied a confidence score (not shown here).
                 </p>
+                <h4>Histogram</h4>
+                <div id="histogram"></div>
             </div>
             <button class="selectCat button-continue">Investigate another category</button>
             <button class="arrowDown button-continue">See credits</button>
@@ -195,6 +197,7 @@
     </script>
     <script src="barchart.js"></script>
     <script src="userSelection.js"></script>
+    <script src="histogram.js"></script>
     <script src="app.js"></script>
     <script>
         $('.arrowDown').click(function () {
