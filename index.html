@@ -15,7 +15,7 @@
                     '#ffffff'
                 ],
                 anchors: ['intro', 'investigate-result', 'insight-into-you', 'result', 'result-summary',
-                    'dataset', 'credit'
+                    'dataset', 'data', 'credit'
                 ],
                 menu: '#menu',
             });
@@ -24,6 +24,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="data.js"></script>
     <script src="radarchart.js"></script>
 </head>
 
@@ -147,10 +148,12 @@
         <div class="section" id="section5">
             <div class="intro">
                 <h1 class="serif">Histogram: What did other people get?</h1>
+                <p class="body">Hover bins to see result of histogram.
+                </p>
                 <div id="histogram"></div>
             </div>
             <button class="selectCat button-continue">Investigate another category</button>
-            <button class="arrowDown button-continue">See credits</button>
+            <button class="arrowDown button-continue">Go to data explanation</button>
         </div>
         <div class="section" id="section6">
             <div class="intro">
@@ -169,11 +172,15 @@
                     <=2 5 gives low, score <=5 0 gives medium low, score <=7 5 medium high, etc. Each category is also applied a confidence score
                         (not shown here). </p>
             </div>
+            <button class="selectCat button-continue">Investigate another category</button>
+            <button class="arrowDown button-continue">Credits</button>
         </div>
         <div class="section" id="section7">
             <div class="intro">
                 <h3>Credits</h3>
-                <p>d3v4 radar chart: <a href="http://bl.ocks.org/nbremer/6506614"> http://bl.ocks.org/nbremer/6506614</a></p>
+                <p>Radar chart: <a href="http://bl.ocks.org/nbremer/6506614"> http://bl.ocks.org/nbremer/6506614</a></p>
+                <p>Bar chart: <a href="https://bl.ocks.org/d3noob/bdf28027e0ce70bd132edc64f1dd7ea4">https://bl.ocks.org/d3noob/bdf28027e0ce70bd132edc64f1dd7ea4</a> </p>
+                <p>Histogram: <a href="http://bl.ocks.org/juan-cb/ac731adaeadd3e855d26">http://bl.ocks.org/juan-cb/ac731adaeadd3e855d26</a></p>
             </div>
             <button class="selectCat button-continue">Investigate another category</button>
         </div>

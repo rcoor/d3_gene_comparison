@@ -7,7 +7,7 @@ var selection = d3.select("#userSelection").append("select").on("change", functi
     if (selectedValue == "All") {
         selectedValue = "";
     };
-    drawChart(selectedValue);
+    drawRadarChart(selectedValue);
 });
 
 function loadSelection(select) {

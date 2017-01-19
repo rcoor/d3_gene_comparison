@@ -1,6 +1,5 @@
 
 function loadBarChart(userCat, divId) {
-    //console.log(userCat);
     d3.select(divId + " svg").remove();
 
     // set the dimensions and margins of the graph
@@ -8,10 +7,11 @@ function loadBarChart(userCat, divId) {
             top: 45,
             right: 110,
             bottom: 30,
-            left: 40
+            left: 70
         },
         width = 400 - margin.left - margin.right,
         height = 200 - margin.top - margin.bottom;
+
 
     // set the ranges
     var x = d3.scaleBand()
@@ -19,6 +19,8 @@ function loadBarChart(userCat, divId) {
         .padding(0.1);
     var y = d3.scaleLinear()
         .range([height, 0]);
+
+    var divTooltip = d3.select("#section4").append("div").attr("class", "toolTip");
 
     var svg = d3.select(divId).append('svg')
         .attr("width", width + margin.left + margin.right)
@@ -38,7 +40,7 @@ function loadBarChart(userCat, divId) {
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", function(d) { console.log(d);return x(d.username); })
+        .attr("x", function(d) { return x(d.username); })
         .attr("width", x.bandwidth)
         .attr("y", function (d) {
             return y(d.percentage);
@@ -46,10 +48,26 @@ function loadBarChart(userCat, divId) {
         .attr("height", function (d) {
             return height - y(d.percentage);
         })
+        .on("mousemove", function (d) {
+            console.log(d)
+            divTooltip.style("left", d3.event.pageX + 10 + "px");
+            divTooltip.style("top", d3.event.pageY - 25 + "px");
+            divTooltip.style("display", "inline-block");
+            var x = d3.event.pageX, y = d3.event.pageY
+            var elements = document.querySelectorAll(':hover');
+            l = elements.length
+            l = l - 1
+            elementData = elements[l].__data__
+            divTooltip.html("Score: " + (d.percentage) + "<br>" + elementData.name + "<br>" + d.result.result);
+        })
+        .on("mouseout", function (d) {
+            divTooltip.style("display", "none");
+        })
         .style("fill", (d,i) => { return color(i) });
 
     // add the x Axis
     svg.append("g")
+        .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x));
 

@@ -1,13 +1,28 @@
+function histogram(userCat) {
+    getAccumulatedForHist((data) => {
+
+        data = data.filter((d) =>
+        {
+            var bool = false;
+            if (d.label == userCat.name) {
+                bool = true;
+            }
+            return bool
+        });
+        loadHistogram(data);
+    });
+};
+
 function loadHistogram(dataset) {
     d3.select("#histogram svg").remove();
     var margin = {
             top: 100,//(parseInt(d3.select('body').style('width'), 10) / 10),
             right: (parseInt(d3.select('body').style('width'), 10) / 10),
-            bottom: (parseInt(d3.select('body').style('width'), 10) / 10),
+            bottom: 30,
             left: (parseInt(d3.select('body').style('width'), 10) / 10)
         },
-        width = parseInt(d3.select('body').style('width'), 10)/1 - margin.left - margin.right,
-        height = parseInt(d3.select('body').style('height'), 10)/1.2 - margin.top - margin.bottom;
+        width = 600,
+        height = 600 - margin.top - margin.bottom;
 
     var x0 = d3.scaleBand()
         .rangeRound([0,width], .1);

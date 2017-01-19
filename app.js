@@ -1,3 +1,110 @@
+// Dimensions of radar chart
+var width = 300,
+    height = 300;
+
+// Config for the Radar chart
+var config = {
+    w: width,
+    h: height,
+    maxValue: 100,
+    levels: 5,
+    ExtraWidthX: 300
+}
+
+var svg = d3.select('body')
+    .selectAll('svg')
+    .append('svg')
+    .attr("width", width)
+    .attr("height", height);
+
+
+// Draw Radar Chart
+function drawRadarChart(filterValue) {
+
+    getAccumulatedData((accData) => {
+        getUserData((userData) => {
+
+        var categories = []
+        userData.forEach(category => {
+            categories.push(category.name);
+    });
+
+        accData = accData.filter(category => {
+                var bool = false;
+        categories.forEach(name => {
+            if (category.name == name)
+        bool = true;
+    });
+        return bool;
+    });
+
+        accData = filterByCategory(accData, filterValue);
+        userData = filterByCategory(userData, filterValue);
+        accData = accData.sort(compare);
+        userData = userData.sort(compare);
+
+        userData = [userData];
+        userData.push(accData);
+        data = userData;
+
+        // quickfix to names
+        let names = ['Your results', 'Average'];
+
+        RadarChart.draw("#chart", data, names, config);
+    });
+});
+}
+
+
+// Make average of scores for each category
+function countScores(category) {
+    var storeScores = 0;
+    var peopleCount = 0;
+    category.accumulated_scores.map(scores => {
+        storeScores += scores.score * scores.count;
+        peopleCount += scores.count;
+    });
+    var percentage = (storeScores / peopleCount) / category.max_score * 100;
+    category['percentage'] = percentage;
+    return category;
+}
+
+
+// get result from bounds
+function getResultsFromBounds(percentage, bounds) {
+
+    var bool = false;
+    for (var i = 0; i < bounds.length; i++) {
+        if (i == 0) {
+            bool = percentage <= bounds[i].bound && percentage >= 0;
+
+        } else {
+
+            bool = percentage <= bounds[i].bound && percentage > bounds[i - 1].bound;
+        }
+        if (bool) {
+            return bounds[i].explanation;
+        }
+    }
+}
+
+//compare names giving object
+function compare(a, b) {
+    if (a.name < b.name)
+        return -1;
+    if (a.name > b.name)
+        return 1;
+    return 0;
+}
+
+function filterByCategory(array, type) {
+    if (!type) return array;
+    return array.filter((value) => {
+            return value.category_group.name == type;
+});
+}
+
+//load summary text in div id #summary
 function loadSummary(userCat) {
     var text = userCat;
     document.getElementById('summary').innerHTML = userCat.result.summary.body;
@@ -32,6 +139,7 @@ function addResultText(userResults, averageResults) {
     resultHeader.html(outputText);
 }
 
+
 function resultTextGenerator(string1, string2) {
     var string = '';
     if (string1 == string2) {
@@ -51,55 +159,6 @@ function addResultImage(userResults) {
         .attr('width', '100%');
 }
 
-function getAccumulated(callback) {
-    d3.json("data.json", function (error, data) {
-        if (error) throw error;
-
-        dataset = []
-
-        data = data.map(category => {
-
-            category = category.response;
-            var boundCount = {"label":category.category.name};
-            console.log(category.bounds)
-            bounds = category.bounds;
-            category.accumulated_scores.forEach((scores) => {
-                if (scores.score == 0) {
-                    score = 0;
-                } else {
-                    score = (scores.score / category.max_score)*100;
-                }
-
-                bound = getResultsFromBounds(score,bounds);
-
-                if (boundCount[bound] == undefined) {
-                    boundCount[bound] = scores.count;
-                } else {
-                    boundCount[bound] = boundCount[bound] + scores.count;
-                }
-            });
-            dataset.push(boundCount)
-            return
-        })
-        callback(dataset);
-    });
-}
-
-function histogram(userCat) {
-    getAccumulated((data) => {
-
-        data = data.filter((d) =>
-        {
-            var bool = false;
-            if (d.label == userCat.name) {
-                bool = true;
-            }
-            return bool
-        });
-        loadHistogram(data);
-    });
-};
-
-drawChart("");
+drawRadarChart("");
 loadSelection(selection);
 
